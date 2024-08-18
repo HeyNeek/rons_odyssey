@@ -278,7 +278,9 @@ shape = SubResource("RectangleShape2D_0rp38")
 zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.0
 
 [node name="SweatParticles" type="GPUParticles2D" parent="."]
 show_behind_parent = true

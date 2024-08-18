@@ -2,37 +2,44 @@ extends CharacterBody2D
 
 class_name Player
 
-@onready var animated_sprite = $AnimatedSprite2D
-@onready var sweat_particles = $SweatParticles
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sweat_particles: GPUParticles2D = $SweatParticles
+@onready var camera: Camera2D = $Camera2D
 #@onready var player_jump_noise = $PlayerJumpNoise
 
-@export var gravity = 400
-@export var speed = 150
-@export var jump_force = 225
+@export var gravity: int = 400
+@export var speed: int = 150
+@export var jump_force: int = 225
 
-var is_active = true
+var previous_y_velocity: int
+var is_active: bool = true
 
-func _physics_process(delta):
+func _ready() -> void:
+	camera.position.x = 75
+
+func _physics_process(delta: float) -> void:
+	camera.position.y = 0
 	if is_active == true:
 		if is_on_floor() == false:
 			velocity.y += gravity * delta
 			
 			if Input.is_action_pressed("dive_down"):
 				velocity.y += gravity * delta * 3
-				#print(gravity * delta * 2)
-				#print("y velocity: " + str(velocity.y))
+				camera.position.y = 175
 				#cap for dive speed
 				if velocity.y > 600:
 					velocity.y = 600
 			
 			if velocity.y > 200 && !Input.is_action_pressed("dive_down"):
 				velocity.y = 200
+			
+			print("y velocity: " + str(velocity.y))
 		
 		if Input.is_action_just_pressed("jump") && is_on_floor() == true:
 			#player_jump_noise.play()
 			jump(jump_force)
 		
-		var direction = Input.get_axis("move_left", "move_right")
+		var direction: float = Input.get_axis("move_left", "move_right")
 		velocity.x += direction * speed
 		
 		if Input.is_action_pressed("sprint") && is_on_floor() == true:
@@ -46,6 +53,12 @@ func _physics_process(delta):
 		
 		if direction == 0:
 			velocity.x = 0
+		
+		if direction == 1:
+			camera.position.x = 50
+		
+		if direction == -1:
+			camera.position.x = -50
 		
 		if direction != 0:
 			animated_sprite.flip_h = direction == -1
@@ -71,10 +84,10 @@ func _physics_process(delta):
 		
 		update_animations(direction)
 
-func jump(force):
+func jump(force: int) -> void:
 	velocity.y = -force
 
-func update_animations(direction):
+func update_animations(direction: float) -> void:
 	if is_active == true:
 		if is_on_floor():
 			if direction == 0:

@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
-@onready var animated_sprite = $AnimatedSprite2D
-@onready var animation_player = get_parent().get_node("AnimationPlayer")
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = get_parent().get_node("AnimationPlayer")
 
-@export var gravity = 400
+@export var gravity: int = 400
 
-var is_idle = false
-var should_move_right = true
-var is_moving = false
+var is_idle: bool = false
+var should_move_right: bool = true
+var is_moving: bool = false
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if not is_moving:
 		if is_idle:
 			go_idle()
@@ -19,7 +19,7 @@ func _physics_process(delta):
 	if is_on_floor() == false:
 			velocity.y += gravity * delta
 
-func move_side_to_side():
+func move_side_to_side() -> void:
 	is_moving = true
 	
 	if should_move_right:
@@ -39,7 +39,7 @@ func move_side_to_side():
 	is_idle = true
 	is_moving = false
 
-func go_idle():
+func go_idle() -> void:
 	animated_sprite.play("idle")
 	await get_tree().create_timer(1).timeout
 	is_idle = false
