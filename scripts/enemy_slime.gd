@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
+class_name EnemySlime
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = get_parent().get_node("AnimationPlayer")
+@onready var weak_spot_area: Area2D = $WeakSpotArea
 
 @export var gravity: int = 400
 
@@ -43,3 +46,11 @@ func go_idle() -> void:
 	animated_sprite.play("idle")
 	await get_tree().create_timer(1).timeout
 	is_idle = false
+
+func _on_weak_spot_area_body_entered(body: CharacterBody2D) -> void:
+	body.jump(275)
+	queue_free()
+
+func _on_damage_area_body_entered(body: CharacterBody2D) -> void:
+	if body is Player:
+		body.queue_free()
