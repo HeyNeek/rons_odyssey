@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs57kavjdlo1l"]
+
+[ext_resource type="Script" path="res://scripts/ghost.gd" id="1_ytjar"]
+[ext_resource type="Texture2D" uid="uid://ds0x0j36ngucs" path="res://assets/sprites/enemies/ghost_sprite.png" id="2_dnd2q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljl0l"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_23x1u"]
+radius = 13.0384
+
+[node name="Ghost" type="Node2D"]
+script = ExtResource("1_ytjar")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("2_dnd2q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-2, -1)
+shape = SubResource("CircleShape2D_ljl0l")
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(-2, -1)
+shape = SubResource("CircleShape2D_23x1u")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

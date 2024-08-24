@@ -263,7 +263,7 @@ scale_min = 2.0
 scale_max = 2.0
 color = Color(0, 0.960784, 1, 1)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_ux2xd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

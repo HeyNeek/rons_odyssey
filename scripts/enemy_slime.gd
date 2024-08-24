@@ -48,8 +48,9 @@ func go_idle() -> void:
 	is_idle = false
 
 func _on_weak_spot_area_body_entered(body: CharacterBody2D) -> void:
-	body.jump(275)
-	queue_free()
+	if body is Player:
+		body.jump(275)
+		queue_free()
 
 func _on_damage_area_body_entered(body: CharacterBody2D) -> void:
 	if body is Player:
