@@ -42,9 +42,9 @@ position = Vector2(1163.5, 13)
 shape = SubResource("RectangleShape2D_75473")
 
 [node name="MovingPlatform" parent="." instance=ExtResource("6_jghct")]
-position = Vector2(846, 361)
+position = Vector2(844, 361)
 
 [node name="MovingPlatform2" parent="." instance=ExtResource("6_jghct")]
-position = Vector2(1093, 361)
+position = Vector2(1423, 361)
 
 [connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]
