@@ -11,7 +11,7 @@ func _ready() -> void:
 	#be directly in the scene's node tree using Godot's group system
 	player = get_tree().get_nodes_in_group("player")[0] as CharacterBody2D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_instance_valid(player):
 		var direction: Vector2 = (player.global_position - ghost.global_position).normalized()
 		

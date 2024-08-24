@@ -37,6 +37,8 @@ size = Vector2(26.6366, 9.05964)
 size = Vector2(32, 16)
 
 [node name="EnemySlime" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_xrdwn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -50,6 +52,8 @@ position = Vector2(4, 1)
 shape = SubResource("RectangleShape2D_kqhg4")
 
 [node name="WeakSpotArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeakSpotArea"]
 position = Vector2(3.5, -9.5)
@@ -57,6 +61,8 @@ scale = Vector2(0.938558, 0.331139)
 shape = SubResource("RectangleShape2D_akat2")
 
 [node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(4, 1)

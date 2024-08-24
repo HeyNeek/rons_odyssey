@@ -26,12 +26,12 @@ func move_side_to_side() -> void:
 	is_moving = true
 	
 	if should_move_right:
-		print("right")
+		#print("right")
 		animated_sprite.flip_h = false
 		animated_sprite.play("move")
 		animation_player.play("move_right")
 	else:
-		print("left")
+		#print("left")
 		animated_sprite.flip_h = true
 		animated_sprite.play("move")
 		animation_player.play("move_left")

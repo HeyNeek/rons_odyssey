@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcen4vgq1lau3"]
+[gd_scene load_steps=8 format=3 uid="uid://dcen4vgq1lau3"]
 
 [ext_resource type="Script" path="res://scripts/test_level.gd" id="1_120wk"]
 [ext_resource type="PackedScene" uid="uid://b0yfxh4x4ya6a" path="res://scenes/characters/player.tscn" id="2_4vjpf"]
 [ext_resource type="PackedScene" uid="uid://u8no0kxknnig" path="res://scenes/utils/tile_map.tscn" id="3_6xcdm"]
 [ext_resource type="PackedScene" uid="uid://bx4qgfdkjhf7x" path="res://scenes/characters/animated_slime.tscn" id="4_tpn30"]
 [ext_resource type="PackedScene" uid="uid://bs57kavjdlo1l" path="res://scenes/characters/ghost.tscn" id="5_cmtyb"]
+[ext_resource type="PackedScene" uid="uid://te6jkc48puth" path="res://scenes/terrain/moving_platform.tscn" id="6_jghct"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75473"]
+size = Vector2(2545, 46)
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_120wk")
@@ -23,7 +27,24 @@ position = Vector2(221, 200)
 position = Vector2(300, 201)
 
 [node name="Ghost" parent="." instance=ExtResource("5_cmtyb")]
-position = Vector2(254, 71)
+position = Vector2(-20, 324)
 
 [node name="Ghost2" parent="." instance=ExtResource("5_cmtyb")]
-position = Vector2(466, 329)
+position = Vector2(385, 102)
+
+[node name="Deathzone" type="Area2D" parent="."]
+position = Vector2(97, 639)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+position = Vector2(1163.5, 13)
+shape = SubResource("RectangleShape2D_75473")
+
+[node name="MovingPlatform" parent="." instance=ExtResource("6_jghct")]
+position = Vector2(846, 361)
+
+[node name="MovingPlatform2" parent="." instance=ExtResource("6_jghct")]
+position = Vector2(1093, 361)
+
+[connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]
