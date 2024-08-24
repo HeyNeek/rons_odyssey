@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 			if velocity.y > 200 && !Input.is_action_pressed("dive_down"):
 				velocity.y = 200
 			
-			print("y velocity: " + str(velocity.y))
+			#print("y velocity: " + str(velocity.y))
 		
 		if Input.is_action_just_pressed("jump") && is_on_floor() == true:
 			#player_jump_noise.play()

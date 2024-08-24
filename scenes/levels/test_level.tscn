@@ -24,3 +24,6 @@ position = Vector2(300, 201)
 
 [node name="Ghost" parent="." instance=ExtResource("5_cmtyb")]
 position = Vector2(254, 71)
+
+[node name="Ghost2" parent="." instance=ExtResource("5_cmtyb")]
+position = Vector2(466, 329)
